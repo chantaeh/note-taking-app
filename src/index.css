@@ -2,6 +2,12 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+#container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .subname {
   font-size: 0.75em;
   font-weight: bold;
@@ -59,4 +65,18 @@ header {
 #menu:hover {
   background-color: darkslateblue;
   color: white;
+}
+
+#body-container {
+  display: flex;
+  flex: 1;
+}
+
+#sidebar {
+  flex: 0 0 20%;
+}
+
+#body {
+  border-left: 1px solid lightgrey;
+  flex: 1;
 }
