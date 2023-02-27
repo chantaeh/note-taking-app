@@ -38,3 +38,17 @@ header {
 .header-item {
   flex: 1 0 33%;
 }
+
+#ul-nav {
+  text-align: left;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+#menu {
+  padding: 10px 25px;
+  font-size: 1.5em;
+  font-weight: bold;
+}
