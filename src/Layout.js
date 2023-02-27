@@ -5,6 +5,9 @@ function Layout() {
         <>
             <header>
             <span class="header-item">
+                <ul id="ul-nav">
+                    <li id="menu">&#9776;</li>
+                </ul>
             </span>
             <span class="header-item">
                 <h1>Lotion</h1>
