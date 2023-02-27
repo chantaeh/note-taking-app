@@ -80,3 +80,26 @@ header {
   border-left: 1px solid lightgrey;
   flex: 1;
 }
+
+#sidebar-header {
+  border-bottom: 1px solid lightgrey;
+  display: flex;
+}
+
+#div-h2 {
+  flex: 1;
+  padding: 5px 0;
+  padding-left: 10px;
+}
+
+#div-add-note {
+  padding: 5px 0;
+  width: 50px;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+#div-add-note:hover {
+  background-color: darkslateblue;
+  color: white;
+}
