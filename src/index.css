@@ -31,7 +31,7 @@ a {
 
 header {
   display: flex;
-  border-top: 3px solid black;
+  border-top: 3px solid darkslateblue;
   border-bottom: 1px solid lightgrey;
   background-color: white;
   color: black;
@@ -54,4 +54,9 @@ header {
   padding: 20px 25px;
   font-size: 1.5em;
   font-weight: bold;
+}
+
+#menu:hover {
+  background-color: darkslateblue;
+  color: white;
 }
