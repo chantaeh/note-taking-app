@@ -19,7 +19,12 @@ function Layout() {
             </header>
             
             <div id="body-container">
-                <div id="sidebar">a</div>
+                <div id="sidebar">
+                    <div id="sidebar-header">
+                        <div id="div-h2"><h2>Notes</h2></div>
+                        <div id="div-add-note"><p>+</p></div>
+                    </div>
+                </div>
                 <div id="body">b</div>
             </div>
         
