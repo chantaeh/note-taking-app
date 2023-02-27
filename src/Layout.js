@@ -9,9 +9,9 @@ function Layout() {
                     <li id="menu">&#9776;</li>
                 </ul>
             </span>
-            <span class="header-item">
+            <span class="header-item name">
                 <h1>Lotion</h1>
-                <p class="subheader">Like Notion, but worse.</p>
+                <p class="subname">Like Notion, but worse.</p>
             </span>
             <span class="header-item">
             </span>
