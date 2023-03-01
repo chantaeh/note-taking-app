@@ -1,6 +1,12 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 function Layout() {
+    const navigate = useNavigate();
+
+    const createNewNote = () => {
+        navigate(`/notes/1/edit`);
+    }
+
     return (
         <>
             <div id="container">
@@ -22,10 +28,15 @@ function Layout() {
                 <div id="sidebar">
                     <div id="sidebar-header">
                         <div id="div-h2"><h2>Notes</h2></div>
-                        <div id="div-add-note"><p>+</p></div>
+                        <div id="div-add-note" onClick={createNewNote}><p>+</p></div>
+                    </div>
+                    <div id="sidebar-content">
+                        content here
                     </div>
                 </div>
-                <div id="body">b</div>
+                <div id="body">
+                    <Outlet />
+                </div>
             </div>
         
         </div>

@@ -80,6 +80,9 @@
     - Figure out how pages will change based on buttons pressed: 
         - You need to use a page parameter to pass the note id to the component: /notes/1, /notes/2/edit. Read more here
         - You probably need to use the `useNavigate` hook from the `react-router-dom` library to navigate to a different page at times. (hint: when you edit a note and hit save, you navigate from the edit path `/notes/note-id/edit` to the view path `/notes/note-id`). Read more [here](https://masoudkarimif.github.io/posts/react-101/#usenavigate)
+
+    States: 
+    - Click new note button, switch to edit. path changes to #/edit
 2. Build Layout HTML/CSS
 3. Build other component HTML/CSS ?
 4. Figure out number/type of states

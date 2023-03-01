@@ -4,7 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Layout from './Layout';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import Editor from './Editor';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -12,9 +13,10 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route element={<Layout />}>
-          {/* Change this to something not Layout */}
-          <Route path="/" element={<Layout />} />
+        <Route path='/' element={<Navigate to="/notes" />} />
+        <Route path="/notes" element={<Layout />}>
+          <Route path="/notes/:noteId/edit" element={<Editor />} />
+          <Route path="/notes/:noteId/" element={'/'} />
         </Route>
       </Routes>
     </BrowserRouter>
