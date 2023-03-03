@@ -1,44 +1,31 @@
-import {ReactQuill, QuillEditor, CustomToolbar} from "react-quill";
+import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { useState } from "react";
 
-function Editor() {
-    const [text,setText] = useState('');
+function Editor(props) {
     
-    const handleChange= (html)=> {
-        setText(html);
-    }
-    const modules = {
-        toolbar: {
-            container: "#toolbar",
-        }
-    }
-    const formats = [
-    'font','size',
-    'bold','italic','underline','strike',
-    'color','background',
-    'script',
-    'header','blockquote','code-block',
-    'indent','list',
-    'direction','align',
-    'link','image','video','formula',
-    ]
 
     return (
         <>
         <div id="editor-container">
-            <div id="editor-header">
+            <div class="div-inside-header">
+                <div class="vertical">
+                    <div class="editor-header">
+                        <input type="text" placeholder='Text here'/>
+                    </div>
 
+                    <div class="editor-datetime">
+                        <input type="datetime-local" />
+                    </div>
+                </div>
+                <div class="horizontal">
+                    <button class="editor-button">Save</button>
+                    <button class="editor-button">Delete</button>
+                </div>
+                
             </div>
 
-            <div id="format-header">
-
-            </div>
-
-            <div id="editor">
-
-            <textarea placeholder="Your Note Here" />
-
+            <div class="editor">
+                <ReactQuill theme="snow" placeholder='Your Note Here'/>
             </div>
         </div>
 
@@ -47,3 +34,7 @@ function Editor() {
 }
 
 export default Editor;
+
+
+
+//  change title default text to Unititlled
