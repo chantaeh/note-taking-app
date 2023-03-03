@@ -62,7 +62,7 @@ header {
   font-weight: bold;
 }
 
-#menu:hover {
+#menu:hover, .editor-button:hover {
   background-color: darkslateblue;
   color: white;
 }
@@ -76,11 +76,10 @@ header {
   flex: 0 0 20%;
 }
 
-#body {
+#body-content {
   border-left: 1px solid lightgrey;
   flex: 1;
   display: flex;
-  width: 100%;
   flex-direction: column;
 }
 
@@ -113,36 +112,63 @@ header {
   flex-direction: column;
 }
 
-#editor {
+.editor {
   display: flex;
-  flex: 1 0 100%;
-  padding: 10px;
+  flex: 1;
 
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-  box-sizing: border-box;   
+  box-sizing: border-box;
+  
+  text-align: left;
+
 }
 
-textarea {
-  display: block;
-  flex: 1 0 100%;
-  padding: 0px;
-  resize: none;
-  font-size: inherit;
+.ql-container.ql-snow {
+  border: none !important;
+  max-height: 90%;
+}
+
+.ql-toolbar.ql-snow {
+  border-left: none !important;
+  border-right: none !important;
+}
+
+.quill {
+  flex: 1;
+}
+
+.editor-header {
+  display: flex;
+}
+
+.editor-header > input {
+  flex: 1;
+  font-size: 1.4em;
+  padding: 15px 15px 0 15px;
   font-family: inherit;
-  border: none; 
-  overflow: auto; 
-  outline: none; 
   box-shadow: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
 }
 
-textarea:focus { 
-  border: none; 
-  overflow: auto; 
-  outline: none; 
-  box-shadow: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-} 
+.editor-datetime > input {
+  padding: 0 0 15px 15px;
+}
+
+input {
+  outline: none;
+  border: none;
+}
+
+.div-inside-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.editor-button {
+  height: 100%;
+  padding: 0 10px;
+  border: none;
+  background-color: white;
+}
