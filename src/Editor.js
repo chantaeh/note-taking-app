@@ -1,12 +1,19 @@
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useState } from 'react';
 
 function Editor(props) {
     const navigate = useNavigate();
     const { noteId } = useParams();
+    let [name, setName] = useState("Untitled");
+
+    const keyPressed = (event) => {
+        setName(event.target.value);
+    };
 
     const saveNote = () => {
+        localStorage.setItem(name, "12345");
         navigate(`/notes/` + noteId);
     }
 
@@ -20,7 +27,7 @@ function Editor(props) {
             <div class="div-inside-header">
                 <div class="vertical">
                     <div class="editor-header">
-                        <input type="text" placeholder='Text here'/>
+                        <input type="text" placeholder='Untitled' value={name} onChange={keyPressed}/>
                     </div>
 
                     <div class="editor-datetime">
