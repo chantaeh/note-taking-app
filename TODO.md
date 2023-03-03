@@ -29,9 +29,6 @@
     }
     ```
 
-- The demo was built using Flexbox, but feel free to use a CSS framework
-- The menu icon is the HTML unicode character `&#9776;`
-- The datetime picker shown in the demo is the `<input type="datetime-local" />` HTML element
 - The value you get from the `datetime-local` element is not formatted the way it's shown in the demo. In order to format it, you can use a function like this:
 
     ```js
