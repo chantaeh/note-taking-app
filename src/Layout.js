@@ -11,16 +11,16 @@ function Layout() {
         <>
             <div id="container">
                 <header>
-                <span class="header-item">
+                <span className="header-item">
                     <ul id="ul-nav">
                         <li id="menu">&#9776;</li>
                     </ul>
                 </span>
-                <span class="header-item name">
+                <span className="header-item name">
                     <h1>Lotion</h1>
-                    <p class="subname">Like Notion, but worse.</p>
+                    <p className="subname">Like Notion, but worse.</p>
                 </span>
-                <span class="header-item">
+                <span className="header-item">
                 </span>
             </header>
             
@@ -34,7 +34,7 @@ function Layout() {
                         content here
                     </div>
                 </div>
-                <div id="body">
+                <div id="body-content">
                     <Outlet />
                 </div>
             </div>
