@@ -1,8 +1,18 @@
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function Editor(props) {
-    
+    const navigate = useNavigate();
+    const { noteId } = useParams();
+
+    const saveNote = () => {
+        navigate(`/notes/` + noteId);
+    }
+
+    const deleteNote = () => {
+        navigate(`/notes`);
+    }
 
     return (
         <>
@@ -18,8 +28,8 @@ function Editor(props) {
                     </div>
                 </div>
                 <div class="horizontal">
-                    <button class="editor-button">Save</button>
-                    <button class="editor-button">Delete</button>
+                    <button class="editor-button" onClick={saveNote}>Save</button>
+                    <button class="editor-button" onClick={deleteNote}>Delete</button>
                 </div>
                 
             </div>
@@ -37,4 +47,4 @@ export default Editor;
 
 
 
-//  change title default text to Unititlled
+//  change title default text to Unititlled - add this as a variable? idk
