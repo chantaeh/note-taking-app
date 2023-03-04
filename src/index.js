@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import Layout from './Layout';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import Editor from './Editor';
+import Note from './Note';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,7 +17,7 @@ root.render(
         <Route path='/' element={<Navigate to="/notes" />} />
         <Route path="/notes" element={<Layout />}>
           <Route path="/notes/:noteId/edit" element={<Editor />} />
-          <Route path="/notes/:noteId/" element={'/'} />
+          <Route path="/notes/:noteId" element={<Note />} />
         </Route>
       </Routes>
     </BrowserRouter>
