@@ -8,12 +8,15 @@ function Editor(props) {
     const { noteId } = useParams();
     let [name, setName] = useState("Untitled");
 
+    const [content, setContent] = useState('')
+    const onChange = (text) => setContent(text)
+
     const keyPressed = (event) => {
         setName(event.target.value);
     };
 
     const saveNote = () => {
-        localStorage.setItem(name, "12345");
+        localStorage.setItem(name, content);
         navigate(`/notes/` + noteId);
     }
 
@@ -21,28 +24,32 @@ function Editor(props) {
         navigate(`/notes`);
     }
 
+
+
     return (
         <>
         <div id="editor-container">
-            <div class="div-inside-header">
-                <div class="vertical">
-                    <div class="editor-header">
+            <div className="div-inside-header">
+                <div className="vertical">
+                    <div className="editor-header">
                         <input type="text" placeholder='Untitled' value={name} onChange={keyPressed}/>
                     </div>
 
-                    <div class="editor-datetime">
+                    <div className="editor-datetime">
                         <input type="datetime-local" />
                     </div>
                 </div>
-                <div class="horizontal">
-                    <button class="editor-button" onClick={saveNote}>Save</button>
-                    <button class="editor-button" onClick={deleteNote}>Delete</button>
+                <div className="horizontal">
+                    <button className="editor-button" onClick={saveNote}>Save</button>
+                    <button className="editor-button" onClick={deleteNote}>Delete</button>
                 </div>
                 
             </div>
 
-            <div class="editor">
-                <ReactQuill theme="snow" placeholder='Your Note Here'/>
+            <div className="editor">
+                {/* <Quill theme="snow" /> */}
+                {/* <ReactQuill theme="snow" placeholder='Your Note Here'/> */}
+                <ReactQuill theme="snow" placeholder="Your Note Here" onChange={onChange}/>
             </div>
         </div>
 
