@@ -14,15 +14,33 @@ function Layout() {
         setId(tempId);
         const temp = ["Untitled", " ", "..."];
         localStorage.setItem(tempId, JSON.stringify(temp));
+        getNotes();
         navigate(`/notes/1/edit`);
     }
 
     let notesList = [];
 
     const getNotes = () => {
+        // Get objects from localStorage and put them into notesList.
         Object.keys(localStorage).forEach(function(key, index) {
-            notesList.push(JSON.parse(localStorage.getItem(key)));
+            let temp = [];
+            temp.push(key);
+            temp = temp.concat(JSON.parse(localStorage.getItem(key)));
+            notesList.push(temp);
         });
+        
+        
+        // Sort entries by date, from newest to oldest
+        notesList.sort((a, b) => b[2].localeCompare(a[2]));
+
+        // Move the newly created note to the top
+        for (let i = 0; i < notesList.length; i++) {
+            if (notesList[i][2] == " " && i != 0) {
+                let temp = notesList[0];
+                notesList[0] = notesList[i];
+                notesList[i] = temp;
+            }
+        }
     }
 
     getNotes();
@@ -53,21 +71,21 @@ function Layout() {
                     </div>
                     <div id="sidebar-content">
                         {
-                        notesList.map((_note, idx) => {
+                        notesList.map((_note) => {
                             // TODO: CHANGE THIS!
                             let isCurrent = false;
-                            if (idx == (notesList.length-1)) {
+                            if (_note[0] == id) {
                                 isCurrent = true;
                             }
 
                             return(
-                                <SidebarNote _note={_note} key={idx} isCurrent={isCurrent}></SidebarNote>
+                                <SidebarNote _note={_note.slice(1, 4)} key={_note[0]} isCurrent={isCurrent}></SidebarNote>
                             )
                         })}
                     </div>
                 </div>
                 <div id="body-content">
-                    <Outlet context={id}/>
+                    <Outlet context={[id, getNotes]}/>
                 </div>
             </div>
         
