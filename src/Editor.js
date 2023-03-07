@@ -2,25 +2,47 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
+import uuid from 'react-uuid';
 
-function Editor(props) {
+function Editor() {
     const navigate = useNavigate();
     const { noteId } = useParams();
     let [name, setName] = useState("Untitled");
 
-    const [content, setContent] = useState('')
-    const onChange = (text) => setContent(text)
+    const [content, setContent] = useState('');
+    const onChange = (text) => setContent(text);
+
+    // Get current datetime and format it
+    const currDateTime = new Date();
+    let dateStr = currDateTime.toISOString();
+    dateStr = dateStr.slice(0, 11);
+    dateStr += currDateTime.toTimeString().slice(0, 8);
+
+    const [date, setDate] = useState(dateStr);
+
+    const dateChanged = (event) => {
+        setDate(event.target.value);
+    }
 
     const keyPressed = (event) => {
         setName(event.target.value);
     };
 
+    const id = useOutletContext();
+    console.log(id);
+
     const saveNote = () => {
-        localStorage.setItem(name, content);
+        const temp = [name, date, content]
+        localStorage.setItem(id, JSON.stringify(temp));
+        // notesList.pop();
+        // notesList.push([name, date, content]);
+        // console.log(notesList);
         navigate(`/notes/` + noteId);
     }
 
     const deleteNote = () => {
+        localStorage.removeItem(id);
         navigate(`/notes`);
     }
 
@@ -36,7 +58,7 @@ function Editor(props) {
                     </div>
 
                     <div className="editor-datetime">
-                        <input type="datetime-local" />
+                        <input type="datetime-local" value={date} onChange={dateChanged}/>
                     </div>
                 </div>
                 <div className="horizontal">
@@ -47,8 +69,6 @@ function Editor(props) {
             </div>
 
             <div className="editor">
-                {/* <Quill theme="snow" /> */}
-                {/* <ReactQuill theme="snow" placeholder='Your Note Here'/> */}
                 <ReactQuill theme="snow" placeholder="Your Note Here" onChange={onChange}/>
             </div>
         </div>
@@ -61,4 +81,3 @@ export default Editor;
 
 
 
-//  change title default text to Unititlled - add this as a variable? idk
