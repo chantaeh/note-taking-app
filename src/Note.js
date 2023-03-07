@@ -57,16 +57,16 @@ function Note() {
 
 export default Note;
 
-// how to make it get the correct item from localStorage?
-// need to use uuid - unique key/identifier??
+// how to make it get the correct item from localStorage on sidebar note click?
 // and how make the page address still start at 1 for each new note created???
 
-// figure out to get ntoes from local storage when page refreshed
 
 // fix title squished
 
 // fix page being able to grow to the right with long note text
 
-// make the sidebar content fit/show up - get text out properly
-// make the sidebar content not retain styles
+// sidebar showing up in weird order
+
+// sidebar scroll
+
 
