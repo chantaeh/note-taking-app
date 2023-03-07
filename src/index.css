@@ -168,17 +168,13 @@ input {
 
 .editor-button {
   height: 100%;
-  padding: 0 10px;
+  padding: 0 15px;
   border: none;
   background-color: white;
 }
 
 h3 {
   padding: 15px 15px 0 15px;
-}
-
-h2 {
-  padding: 15px;
 }
 
 .div-sidebar-note {
@@ -199,4 +195,12 @@ h2 {
 
 .note-inside-header {
   border-bottom: 1px solid lightgrey;
+}
+
+.note-inside-header > .vertical {
+  padding: 15px;
+}
+
+.ql-hidden {
+  display: none;
 }
