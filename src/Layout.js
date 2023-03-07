@@ -1,11 +1,35 @@
 import { Outlet, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import Editor from "./Editor";
+import Note from "./Note";
+import SidebarNote from "./SidebarNote";
+import uuid from "react-uuid";
 
 function Layout() {
     const navigate = useNavigate();
+    const [id, setId] = useState("");
 
     const createNewNote = () => {
+        let tempId = uuid();
+        setId(tempId);
+        const temp = ["Untitled", " ", "..."];
+        localStorage.setItem(tempId, JSON.stringify(temp));
         navigate(`/notes/1/edit`);
     }
+
+    const [notesList, setNotesList] = useState([]);
+
+    // const notesList = () => {
+    //     let notesList = [];
+
+    //     for (let i = 0; i < localStorage.length; i++) {
+    //         const name = localStorage.key(i)
+    //         const content = localStorage.getItem(name);
+    //         notesList.push([name, content]);
+    //     }
+    //     console.log(notesList);
+    //     return notesList;
+    // }
 
     return (
         <>
@@ -31,11 +55,21 @@ function Layout() {
                         <div id="div-add-note" onClick={createNewNote}><p>+</p></div>
                     </div>
                     <div id="sidebar-content">
-                        content here
+                        {notesList.map((_note, idx) => {
+                            // TODO: CHANGE THIS!
+                            let isCurrent = false;
+                            if (idx == (notesList.length-1)) {
+                                isCurrent = true;
+                            }
+
+                            return(
+                                <SidebarNote _note={_note} key={idx} isCurrent={isCurrent}></SidebarNote>
+                            )
+                        })}
                     </div>
                 </div>
                 <div id="body-content">
-                    <Outlet />
+                    <Outlet context={id}/>
                 </div>
             </div>
         
