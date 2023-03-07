@@ -66,7 +66,11 @@ export default Note;
 // fix page being able to grow to the right with long note text
 
 // sidebar showing up in weird order
+    // sort by date stamp?? newest at top, to oldest at bottom
+// i think this is messing stuff up with the current sidebar note chosen too
 
 // sidebar scroll
+
+// menu open/close button
 
 
