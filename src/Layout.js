@@ -17,19 +17,16 @@ function Layout() {
         navigate(`/notes/1/edit`);
     }
 
-    const [notesList, setNotesList] = useState([]);
+    let notesList = [];
 
-    // const notesList = () => {
-    //     let notesList = [];
+    const getNotes = () => {
+        Object.keys(localStorage).forEach(function(key, index) {
+            notesList.push(JSON.parse(localStorage.getItem(key)));
+        });
+    }
 
-    //     for (let i = 0; i < localStorage.length; i++) {
-    //         const name = localStorage.key(i)
-    //         const content = localStorage.getItem(name);
-    //         notesList.push([name, content]);
-    //     }
-    //     console.log(notesList);
-    //     return notesList;
-    // }
+    getNotes();
+    console.log(notesList);
 
     return (
         <>
@@ -55,7 +52,8 @@ function Layout() {
                         <div id="div-add-note" onClick={createNewNote}><p>+</p></div>
                     </div>
                     <div id="sidebar-content">
-                        {notesList.map((_note, idx) => {
+                        {
+                        notesList.map((_note, idx) => {
                             // TODO: CHANGE THIS!
                             let isCurrent = false;
                             if (idx == (notesList.length-1)) {
