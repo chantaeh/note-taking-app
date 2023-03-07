@@ -8,10 +8,12 @@ function SidebarNote({_note, isCurrent}) {
         divClass += "current-note";
     }    
 
+    console.log("bob" + _note[0]);
+
     let date = " ";
 
     // Format date nicely
-    if (_note[1] != "") {
+    if (_note[1] != " ") {
         date = new Date(_note[1]);
         const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
