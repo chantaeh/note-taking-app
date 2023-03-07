@@ -3,7 +3,32 @@ import { useParams } from "react-router-dom";
 
 function Note() {
     const { noteId } = useParams();
-    const [name, date, content] = JSON.parse(localStorage.getItem(localStorage.key(noteId-1)));
+    let [name, date, content] = JSON.parse(localStorage.getItem(localStorage.key(noteId-1)));
+
+    // Format date nicely
+    if (date != " ") {
+        date = new Date(date);
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        let dateStr = months[date.getMonth()] + " " + date.getDate();
+        dateStr += ", " + date.getFullYear() + " at ";
+
+        let hours = date.getHours();
+        let mins = date.getMinutes().toString();
+        let amPm = "AM";
+
+        if (hours % 12 > 1) {
+            hours = hours % 12;
+            amPm = "PM";
+        }
+
+        if (mins.length == 1) {
+            mins = "0" + mins;
+        }
+
+        dateStr += hours + ":" + mins + " " + amPm;
+        date = dateStr;
+    } 
 
     return (
         <>
@@ -14,12 +39,12 @@ function Note() {
                     </div>
 
                     <div className="editor-datetime">
-                        {/* <input type="datetime-local" value={date} onChange={dateChanged}/> */}
+                        <p className="note-date">{date}</p>
                     </div>
                 </div>
                 <div className="horizontal">
-                    <button className="editor-button" >Edit</button>
-                    <button className="editor-button" >Delete</button>
+                    <button className="editor-button">Edit</button>
+                    <button className="editor-button">Delete</button>
                 </div> 
             </div>
             
