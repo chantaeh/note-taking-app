@@ -28,12 +28,18 @@ function Editor() {
         setName(event.target.value);
     };
 
-    const id = useOutletContext();
+    const [id, getNotes] = useOutletContext();
     console.log(id);
 
     const saveNote = () => {
         const temp = [name, date, content]
         localStorage.setItem(id, JSON.stringify(temp));
+        getNotes();
+        // notes are going in order, BUT the newest note is going to the bottom
+        // doesn't get sorted until later
+
+        // I think it works now???? have to test
+
         // notesList.pop();
         // notesList.push([name, date, content]);
         // console.log(notesList);
