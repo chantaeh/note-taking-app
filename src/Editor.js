@@ -3,14 +3,13 @@ import 'react-quill/dist/quill.snow.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import uuid from 'react-uuid';
 
 function Editor() {
     const navigate = useNavigate();
     const { noteId } = useParams();
     let [name, setName] = useState("Untitled");
 
-    const [content, setContent] = useState('');
+    const [content, setContent] = useState('...');
     const onChange = (text) => setContent(text);
 
     // Get current datetime and format it
