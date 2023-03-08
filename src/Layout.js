@@ -1,5 +1,5 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SidebarNote from "./SidebarNote";
 import uuid from "react-uuid";
 import CircularJSON from 'circular-json';
@@ -52,6 +52,20 @@ function Layout() {
         sidebar.classList.toggle("hidden");
     }
 
+    
+    const emptySidebar = () => {
+        const sidebarText = document.getElementById("sidebar-text");
+        if (localStorage.length == 0) {
+            sidebarText.classList.remove("hidden");
+        } else {
+            sidebarText.classList.add("hidden");
+        }
+    }
+
+    useEffect(() => {
+        emptySidebar();
+    });
+
     return (
         <>
             <div id="container">
@@ -76,9 +90,10 @@ function Layout() {
                         <div id="div-add-note" onClick={createNewNote}><p>+</p></div>
                     </div>
                     <div id="sidebar-content">
+                        <p id="sidebar-text">No Note Yet</p>
                         {
                         notesList.map((_note) => {
-                            // TODO: CHANGE THIS!
+                            // set current note
                             let isCurrent = false;
                             if (_note[0] == id) {
                                 isCurrent = true;
@@ -91,6 +106,7 @@ function Layout() {
                     </div>
                 </div>
                 <div id="body-content">
+                    <p id="body-text">Select a note, or create a new one</p>
                     <Outlet context={[id, getNotes, notesList]}/>
                 </div>
             </div>
