@@ -3,6 +3,9 @@ import 'react-quill/dist/quill.snow.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
+import CircularJSON from 'circular-json';
+import {parse, stringify} from 'flatted';
+
 
 function Editor() {
     const navigate = useNavigate();
@@ -29,17 +32,12 @@ function Editor() {
     };
 
     const [id, getNotes] = useOutletContext();
-    console.log(id);
 
     const saveNote = () => {
-        const temp = [name, date, content]
-        localStorage.setItem(id, JSON.stringify(temp));
+        const creationDate = parse(localStorage.getItem(id))[0];
+        const temp = [creationDate, name, date, content]
+        localStorage.setItem(id, stringify(temp));
         getNotes();
-        // notes are going in order, BUT the newest note is going to the bottom
-        // doesn't get sorted until later
-
-        // I think it works now???? have to test
-
         // notesList.pop();
         // notesList.push([name, date, content]);
         // console.log(notesList);
@@ -48,6 +46,7 @@ function Editor() {
 
     const deleteNote = () => {
         localStorage.removeItem(id);
+        // remove note from sidebar?
         navigate(`/notes`);
     }
 

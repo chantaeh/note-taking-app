@@ -1,9 +1,9 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Editor from "./Editor";
-import Note from "./Note";
 import SidebarNote from "./SidebarNote";
 import uuid from "react-uuid";
+import CircularJSON from 'circular-json';
+import {parse, stringify} from 'flatted';
 
 function Layout() {
     const navigate = useNavigate();
@@ -12,8 +12,10 @@ function Layout() {
     const createNewNote = () => {
         let tempId = uuid();
         setId(tempId);
-        const temp = ["Untitled", " ", "..."];
-        localStorage.setItem(tempId, JSON.stringify(temp));
+        let date = new Date().toISOString();
+        const temp = [date, "Untitled", " ", "..."];
+        console.log(temp);
+        localStorage.setItem(tempId, stringify(temp));
         getNotes();
         navigate(`/notes/1/edit`);
     }
@@ -23,28 +25,26 @@ function Layout() {
     const getNotes = () => {
         // Get objects from localStorage and put them into notesList.
         Object.keys(localStorage).forEach(function(key, index) {
-            let temp = [];
-            temp.push(key);
-            temp = temp.concat(JSON.parse(localStorage.getItem(key)));
+            let temp = [key, ...parse(localStorage.getItem(key))];
+            // temp = temp.concat(parse(localStorage.getItem(key)));
             notesList.push(temp);
         });
+       
         
-        
-        // Sort entries by date, from newest to oldest
-        notesList.sort((a, b) => b[2].localeCompare(a[2]));
+        // Sort entries by creation date, from newest to oldest
+        notesList.sort((a, b) => b[1].localeCompare(a[1]));
 
         // Move the newly created note to the top
-        for (let i = 0; i < notesList.length; i++) {
-            if (notesList[i][2] == " " && i != 0) {
-                let temp = notesList[0];
-                notesList[0] = notesList[i];
-                notesList[i] = temp;
-            }
-        }
+        // for (let i = 0; i < notesList.length; i++) {
+        //     if (notesList[i][2] == " " && i != 0) {
+        //         let temp = notesList[0];
+        //         notesList[0] = notesList[i];
+        //         notesList[i] = temp;
+        //     }
+        // }
     }
 
     getNotes();
-    console.log(notesList);
 
     return (
         <>
@@ -79,7 +79,7 @@ function Layout() {
                             }
 
                             return(
-                                <SidebarNote _note={_note.slice(1, 4)} key={_note[0]} isCurrent={isCurrent}></SidebarNote>
+                                <SidebarNote _note={_note.slice(2, 5)} key={_note[0]} isCurrent={isCurrent}></SidebarNote>
                             )
                         })}
                     </div>

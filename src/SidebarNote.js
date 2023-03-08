@@ -8,8 +8,6 @@ function SidebarNote({_note, isCurrent}) {
         divClass += "current-note";
     }    
 
-    console.log("bob" + _note[0]);
-
     let date = " ";
 
     // Format date nicely

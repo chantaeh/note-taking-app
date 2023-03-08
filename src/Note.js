@@ -1,9 +1,13 @@
 import ReactQuill from "react-quill";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import CircularJSON from 'circular-json';
+import {parse, stringify} from 'flatted';
+
 
 function Note() {
     const { noteId } = useParams();
-    let [name, date, content] = JSON.parse(localStorage.getItem(localStorage.key(noteId-1)));
+    let [name, date, content] = parse(localStorage.getItem(localStorage.key(noteId-1))).slice(1, 5);
 
     // Format date nicely
     if (date != " ") {
@@ -43,7 +47,7 @@ function Note() {
                     </div>
                 </div>
                 <div className="horizontal">
-                    <button className="editor-button">Edit</button>
+                    <button className="editor-button" onClick={useNavigate(`/notes/` + noteId + `edit`)}>Edit</button>
                     <button className="editor-button">Delete</button>
                 </div> 
             </div>
@@ -60,14 +64,12 @@ export default Note;
 // how to make it get the correct item from localStorage on sidebar note click?
 // and how make the page address still start at 1 for each new note created???
 
+// sidebar note is supposed to have some html styling D:
 
-// fix title squished
+
+// fix title squished (fixed ish)
 
 // fix page being able to grow to the right with long note text
-
-// sidebar showing up in weird order
-    // sort by date stamp?? newest at top, to oldest at bottom
-// i think this is messing stuff up with the current sidebar note chosen too
 
 // sidebar scroll
 
