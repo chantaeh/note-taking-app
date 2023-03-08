@@ -62,7 +62,7 @@ header {
   font-weight: bold;
 }
 
-#menu:hover, .editor-button:hover, .current-note {
+#menu:hover, .editor-button:hover, .current-note, .div-sidebar-note:hover {
   background-color: darkslateblue;
   color: white;
 }

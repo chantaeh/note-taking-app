@@ -8,6 +8,12 @@ import {parse, stringify} from 'flatted';
 function Note() {
     const { noteId } = useParams();
     let [name, date, content] = parse(localStorage.getItem(localStorage.key(noteId-1))).slice(1, 5);
+    const navigate = useNavigate();
+
+
+    const goEdit = () => {
+        navigate(`/notes/` + noteId + `/edit`);
+    }
 
     // Format date nicely
     if (date != " ") {
@@ -47,7 +53,7 @@ function Note() {
                     </div>
                 </div>
                 <div className="horizontal">
-                    <button className="editor-button" onClick={useNavigate(`/notes/` + noteId + `edit`)}>Edit</button>
+                    <button className="editor-button" onClick={goEdit}>Edit</button>
                     <button className="editor-button">Delete</button>
                 </div> 
             </div>

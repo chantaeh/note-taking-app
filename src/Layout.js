@@ -26,22 +26,11 @@ function Layout() {
         // Get objects from localStorage and put them into notesList.
         Object.keys(localStorage).forEach(function(key, index) {
             let temp = [key, ...parse(localStorage.getItem(key))];
-            // temp = temp.concat(parse(localStorage.getItem(key)));
             notesList.push(temp);
-        });
-       
+        });       
         
         // Sort entries by creation date, from newest to oldest
         notesList.sort((a, b) => b[1].localeCompare(a[1]));
-
-        // Move the newly created note to the top
-        // for (let i = 0; i < notesList.length; i++) {
-        //     if (notesList[i][2] == " " && i != 0) {
-        //         let temp = notesList[0];
-        //         notesList[0] = notesList[i];
-        //         notesList[i] = temp;
-        //     }
-        // }
     }
 
     getNotes();
@@ -79,7 +68,7 @@ function Layout() {
                             }
 
                             return(
-                                <SidebarNote _note={_note.slice(2, 5)} key={_note[0]} isCurrent={isCurrent}></SidebarNote>
+                                <SidebarNote _note={_note.slice(2, 5)} key={_note[0]} isCurrent={isCurrent} onClick={switchNote}></SidebarNote>
                             )
                         })}
                     </div>

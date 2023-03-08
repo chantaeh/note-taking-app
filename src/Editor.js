@@ -10,9 +10,10 @@ import {parse, stringify} from 'flatted';
 function Editor() {
     const navigate = useNavigate();
     const { noteId } = useParams();
-    let [name, setName] = useState("Untitled");
+    const [id, getNotes] = useOutletContext();
 
-    const [content, setContent] = useState('...');
+    let [name, setName] = useState(parse(localStorage.getItem(id))[1]);
+    const [content, setContent] = useState(parse(localStorage.getItem(id))[3]);
     const onChange = (text) => setContent(text);
 
     // Get current datetime and format it
@@ -21,7 +22,7 @@ function Editor() {
     dateStr = dateStr.slice(0, 11);
     dateStr += currDateTime.toTimeString().slice(0, 8);
 
-    const [date, setDate] = useState(dateStr);
+    const [date, setDate] = useState(    parse(localStorage.getItem(id))[2]==" " ? dateStr : parse(localStorage.getItem(id))[2]    );
 
     const dateChanged = (event) => {
         setDate(event.target.value);
@@ -31,7 +32,6 @@ function Editor() {
         setName(event.target.value);
     };
 
-    const [id, getNotes] = useOutletContext();
 
     const saveNote = () => {
         const creationDate = parse(localStorage.getItem(id))[0];
@@ -73,7 +73,7 @@ function Editor() {
             </div>
 
             <div className="editor">
-                <ReactQuill theme="snow" placeholder="Your Note Here" onChange={onChange}/>
+                <ReactQuill theme="snow" placeholder="Your Note Here" value={content}onChange={onChange}/>
             </div>
         </div>
 
