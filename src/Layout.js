@@ -52,18 +52,24 @@ function Layout() {
         sidebar.classList.toggle("hidden");
     }
 
-    
-    const emptySidebar = () => {
+    // on render/re-render
+    useEffect(() => {
+        // show sidebar-text if there are no notes
         const sidebarText = document.getElementById("sidebar-text");
         if (localStorage.length == 0) {
             sidebarText.classList.remove("hidden");
         } else {
             sidebarText.classList.add("hidden");
         }
-    }
 
-    useEffect(() => {
-        emptySidebar();
+        const bodyText = document.getElementById("body-text");
+        if (window.location.pathname == '/notes') {
+            bodyText.classList.remove("hidden");
+        } else {
+            bodyText.classList.add("hidden");
+        }
+
+
     });
 
     return (
@@ -106,7 +112,7 @@ function Layout() {
                     </div>
                 </div>
                 <div id="body-content">
-                    <p id="body-text">Select a note, or create a new one</p>
+                        <p id="body-text">Select a note, or create a new one.</p>
                     <Outlet context={[id, getNotes, notesList]}/>
                 </div>
             </div>
