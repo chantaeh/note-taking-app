@@ -209,8 +209,14 @@ h3 {
   display: none;
 }
 
-#sidebar-text {
+#sidebar-text, #body-text {
   color: grey;
   text-align: center;
   padding-top: 15px;
+}
+
+#body-text {
+  font-size: 1.5em;
+  flex: 1;
+  padding-top: 45vh;
 }
