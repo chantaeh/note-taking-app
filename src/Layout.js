@@ -30,6 +30,8 @@ function Layout() {
         
         // Sort entries by creation date, from newest to oldest
         notesList.sort((a, b) => b[1].localeCompare(a[1]));
+
+        // return notesList;
     }
 
     getNotes();
@@ -69,8 +71,16 @@ function Layout() {
             bodyText.classList.add("hidden");
         }
 
-
+        if (id == undefined && localStorage.length != 0) {
+            getNotes();
+            setId(notesList[0][0]);
+            navigate(`/notes/1`);
+        }
     });
+
+    const deleteId = () => {
+        id = "";
+    }
 
     return (
         <>
@@ -113,7 +123,7 @@ function Layout() {
                 </div>
                 <div id="body-content">
                         <p id="body-text">Select a note, or create a new one.</p>
-                    <Outlet context={[id, getNotes, notesList]}/>
+                    <Outlet context={[id, getNotes, setId, deleteId]}/>
                 </div>
             </div>
         

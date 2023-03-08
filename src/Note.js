@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 function Note() {
     const { noteId } = useParams();
-    const [id, getNotes] = useOutletContext();
+    const [id, setId, deleteId] = useOutletContext();
     const [name, setName] = useState();
     const [content, setContent] = useState();
     let [date, setDate] = useState();
@@ -31,6 +31,8 @@ function Note() {
         const answer = window.confirm("Are you sure?");
         if (answer) {
             localStorage.removeItem(id);
+            setId("");
+            deleteId();
             navigate(`/notes`);
         }
     }
