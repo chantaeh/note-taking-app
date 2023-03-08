@@ -7,14 +7,13 @@ import {parse, stringify} from 'flatted';
 
 function Layout() {
     const navigate = useNavigate();
-    const [id, setId] = useState("");
+    let [id, setId] = useState("");
 
     const createNewNote = () => {
         let tempId = uuid();
         setId(tempId);
         let date = new Date().toISOString();
         const temp = [date, "Untitled", " ", "..."];
-        console.log(temp);
         localStorage.setItem(tempId, stringify(temp));
         getNotes();
         navigate(`/notes/1/edit`);
@@ -35,8 +34,16 @@ function Layout() {
 
     getNotes();
 
-    const switchNote = () => {
-        
+    const switchNote = (newId) => {
+        // figure out which notes page to navigate to 
+        let index = 0;
+        for (let i = 0; i < notesList.length; i++) {
+            if (notesList[i][0] === newId) {
+                index = i+1;
+            }
+        }
+        getNotes();
+        navigate(`/notes/` + index);
     }
 
 
@@ -78,13 +85,13 @@ function Layout() {
                             }
 
                             return(
-                                <SidebarNote _note={_note.slice(2, 5)} key={_note[0]} isCurrent={isCurrent} onClick={switchNote}></SidebarNote>
+                                <SidebarNote _note={_note.slice(2, 5)} key={_note[0]} isCurrent={isCurrent} noteId={[_note[0], setId, switchNote]}></SidebarNote>
                             )
                         })}
                     </div>
                 </div>
                 <div id="body-content">
-                    <Outlet context={[id, getNotes]}/>
+                    <Outlet context={[id, getNotes, notesList]}/>
                 </div>
             </div>
         

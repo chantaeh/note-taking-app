@@ -1,7 +1,7 @@
 import ReactQuill from "react-quill";
 import { useState } from "react";
 
-function SidebarNote({_note, isCurrent}) {
+function SidebarNote({_note, isCurrent, noteId}) {
     let divClass = "div-sidebar-note";
     if (isCurrent) {
         divClass += " ";
@@ -49,9 +49,15 @@ function SidebarNote({_note, isCurrent}) {
         content = content.slice(0, 65) + "...";
     }
 
-    const showNote = () => {
+    const showNote = async () => {
         // can pass in the note's uuid instead?
         // then when the note is clicked, you can pass that into the note function
+        // navigate to taht page
+
+        // or do this in Layout???
+        const [id, setId, switchNote] = noteId;
+        await setId(id);
+        switchNote(id);
     }
 
     return (

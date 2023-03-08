@@ -1,13 +1,25 @@
 import ReactQuill from "react-quill";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import CircularJSON from 'circular-json';
 import {parse, stringify} from 'flatted';
+import { useOutletContext } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 
 function Note() {
     const { noteId } = useParams();
-    let [name, date, content] = parse(localStorage.getItem(localStorage.key(noteId-1))).slice(1, 5);
+    const [id, getNotes] = useOutletContext();
+    const [name, setName] = useState();
+    const [content, setContent] = useState();
+    let [date, setDate] = useState();
+
+    // on re-render, set name, content, date
+    useEffect(() => {
+        setName(parse(localStorage.getItem(id))[1]);
+        setContent(parse(localStorage.getItem(id))[3]=="..." ? "" : parse(localStorage.getItem(id))[3]);
+        setDate(parse(localStorage.getItem(id))[2]);
+    });
+
     const navigate = useNavigate();
 
 
@@ -69,7 +81,6 @@ export default Note;
 
 // HIGHER PRIORITY
 // how to make it get the correct item from localStorage on sidebar note click?
-// and how make the page address still start at 1 for each new note created???
 
 // sidebar note text is doing funny things again
 

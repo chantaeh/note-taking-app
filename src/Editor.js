@@ -13,7 +13,7 @@ function Editor() {
     const [id, getNotes] = useOutletContext();
 
     let [name, setName] = useState(parse(localStorage.getItem(id))[1]);
-    const [content, setContent] = useState(parse(localStorage.getItem(id))[3]=="..." ? "" : parse(localStorage.getItem(id))[3]);
+    let [content, setContent] = useState(parse(localStorage.getItem(id))[3]=="..." ? "" : parse(localStorage.getItem(id))[3]);
     const onChange = (text) => setContent(text);
 
     // Get current datetime and format it
@@ -35,6 +35,9 @@ function Editor() {
 
     const saveNote = () => {
         const creationDate = parse(localStorage.getItem(id))[0];
+        if (content === "") {
+            content = "...";
+        }
         const temp = [creationDate, name, date, content]
         localStorage.setItem(id, stringify(temp));
         getNotes();
