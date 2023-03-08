@@ -80,7 +80,7 @@ function Note() {
 export default Note;
 
 // HIGHER PRIORITY
-// how to make it get the correct item from localStorage on sidebar note click?
+// delete
 
 // sidebar note text is doing funny things again
 

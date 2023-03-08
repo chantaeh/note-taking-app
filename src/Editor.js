@@ -41,15 +41,12 @@ function Editor() {
         const temp = [creationDate, name, date, content]
         localStorage.setItem(id, stringify(temp));
         getNotes();
-        // notesList.pop();
-        // notesList.push([name, date, content]);
-        // console.log(notesList);
         navigate(`/notes/` + noteId);
     }
 
     const deleteNote = () => {
         localStorage.removeItem(id);
-        // remove note from sidebar?
+        // remove note from sidebar? will do it automatically!!!! since sidebarnotes are linked to local storage!!!!
         navigate(`/notes`);
     }
 
