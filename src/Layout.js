@@ -35,13 +35,23 @@ function Layout() {
 
     getNotes();
 
+    const switchNote = () => {
+        
+    }
+
+
+    const toggleMenu = () => {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("hidden");
+    }
+
     return (
         <>
             <div id="container">
                 <header>
                 <span className="header-item">
                     <ul id="ul-nav">
-                        <li id="menu">&#9776;</li>
+                        <li id="menu" onClick={toggleMenu}>&#9776;</li>
                     </ul>
                 </span>
                 <span className="header-item name">

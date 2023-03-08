@@ -67,18 +67,19 @@ function Note() {
 
 export default Note;
 
+// HIGHER PRIORITY
 // how to make it get the correct item from localStorage on sidebar note click?
 // and how make the page address still start at 1 for each new note created???
+
+// sidebar note text is doing funny things again
 
 // sidebar note is supposed to have some html styling D:
 
 
+// LOWER PRIORITY
 // fix title squished (fixed ish)
 
 // fix page being able to grow to the right with long note text
 
 // sidebar scroll
-
-// menu open/close button
-
 
