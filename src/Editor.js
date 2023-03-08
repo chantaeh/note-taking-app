@@ -45,8 +45,11 @@ function Editor() {
     }
 
     const deleteNote = () => {
-        localStorage.removeItem(id);
-        navigate(`/notes`);
+        const answer = window.confirm("Are you sure?");
+        if (answer) {
+            localStorage.removeItem(id);
+            navigate(`/notes`);
+        }
     }
 
 
