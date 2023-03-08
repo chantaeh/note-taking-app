@@ -88,9 +88,9 @@ function Note() {
 export default Note;
 
 // HIGHER PRIORITY
-// sidebar note text is doing funny things again
-
 // sidebar note is supposed to have some html styling D:
+
+// there are issues when trying to navigate to notes page via url instead of clicking on sidebar
 
 
 // LOWER PRIORITY

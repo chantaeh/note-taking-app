@@ -74,7 +74,7 @@ header {
 
 #sidebar {
   flex: 0 0 20%;
-  max-width: 300px;
+  max-width: 250px;
 }
 
 #body-content {
@@ -183,9 +183,19 @@ h3 {
   border-bottom: 1px solid lightgray;
 }
 
+h4 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .sidebar-note-content {
   padding-top: 5px;
   font-size: .9em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
 }
 
 .note-date {

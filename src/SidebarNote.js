@@ -36,25 +36,14 @@ function SidebarNote({_note, isCurrent, noteId}) {
     } 
 
     let name = _note[0];
-    if (name.length > 30) {
-        name = name.slice(0, 30) + "...";
-    }
 
     let content = _note[2];
     // Remove HTML and shorten
     content = content.replace(/<\/{0,1}a>/g, ' ');
     content = content.replace(/<[^>]*>?/gm, '');
     content = content.replace(/&[a-z]{1,};/g, '');
-    if (content.length > 65) {
-        content = content.slice(0, 65) + "...";
-    }
 
     const showNote = async () => {
-        // can pass in the note's uuid instead?
-        // then when the note is clicked, you can pass that into the note function
-        // navigate to taht page
-
-        // or do this in Layout???
         const [id, setId, switchNote] = noteId;
         await setId(id);
         switchNote(id);
