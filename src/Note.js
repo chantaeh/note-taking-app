@@ -27,6 +27,11 @@ function Note() {
         navigate(`/notes/` + noteId + `/edit`);
     }
 
+    const deleteNote = () => {
+        localStorage.removeItem(id);
+        navigate(`/notes`);
+    }
+
     // Format date nicely
     if (date != " ") {
         date = new Date(date);
@@ -66,7 +71,7 @@ function Note() {
                 </div>
                 <div className="horizontal">
                     <button className="editor-button" onClick={goEdit}>Edit</button>
-                    <button className="editor-button">Delete</button>
+                    <button className="editor-button" onClick={deleteNote}>Delete</button>
                 </div> 
             </div>
             
@@ -80,8 +85,6 @@ function Note() {
 export default Note;
 
 // HIGHER PRIORITY
-// delete
-
 // sidebar note text is doing funny things again
 
 // sidebar note is supposed to have some html styling D:

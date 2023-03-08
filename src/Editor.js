@@ -46,7 +46,6 @@ function Editor() {
 
     const deleteNote = () => {
         localStorage.removeItem(id);
-        // remove note from sidebar? will do it automatically!!!! since sidebarnotes are linked to local storage!!!!
         navigate(`/notes`);
     }
 
