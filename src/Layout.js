@@ -30,8 +30,6 @@ function Layout() {
         
         // Sort entries by creation date, from newest to oldest
         notesList.sort((a, b) => b[1].localeCompare(a[1]));
-
-        // return notesList;
     }
 
     getNotes();
@@ -84,8 +82,8 @@ function Layout() {
 
     return (
         <>
-            <div id="container">
-                <header>
+        <div id="container">
+            <header>
                 <span className="header-item">
                     <ul id="ul-nav">
                         <li id="menu" onClick={toggleMenu}>&#9776;</li>
