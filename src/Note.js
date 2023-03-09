@@ -15,9 +15,19 @@ function Note() {
 
     // on re-render, set name, content, date
     useEffect(() => {
-        setName(parse(localStorage.getItem(id))[1]);
-        setContent(parse(localStorage.getItem(id))[3]=="..." ? "" : parse(localStorage.getItem(id))[3]);
-        setDate(parse(localStorage.getItem(id))[2]);
+        let notesList = [];
+        Object.keys(localStorage).forEach(function(key, index) {
+            let temp = [key, ...parse(localStorage.getItem(key))];
+            notesList.push(temp);
+        });       
+        
+        // Sort entries by creation date, from newest to oldest
+        notesList.sort((a, b) => b[1].localeCompare(a[1]));
+
+
+        setName(notesList[noteId-1][2]);
+        setDate(notesList[noteId-1][3]);
+        setContent(notesList[noteId-1][4]=="..." ? "" : notesList[noteId-1][4]);
     });
 
     const navigate = useNavigate();
@@ -92,13 +102,13 @@ export default Note;
 // HIGHER PRIORITY
 // sidebar note is supposed to have some html styling D:
 
-// there are issues when trying to navigate to notes page via url instead of clicking on sidebar
+// when navigate to specific notes page via url, current note is not highlighted
+
+// can't navigate to edit page via url D:
 
 
 // LOWER PRIORITY
 // fix title squished (fixed ish)
 
 // fix page being able to grow to the right with long note text
-
-// sidebar scroll
 
