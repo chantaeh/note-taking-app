@@ -3,7 +3,6 @@ import 'react-quill/dist/quill.snow.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import CircularJSON from 'circular-json';
 import {parse, stringify} from 'flatted';
 
 

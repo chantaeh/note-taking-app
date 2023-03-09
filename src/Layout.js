@@ -2,7 +2,6 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import SidebarNote from "./SidebarNote";
 import uuid from "react-uuid";
-import CircularJSON from 'circular-json';
 import {parse, stringify} from 'flatted';
 
 function Layout() {

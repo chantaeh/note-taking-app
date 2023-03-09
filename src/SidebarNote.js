@@ -1,6 +1,3 @@
-import ReactQuill from "react-quill";
-import { useState } from "react";
-
 function SidebarNote({_note, isCurrent, noteId}) {
     let divClass = "div-sidebar-note";
     if (isCurrent) {
