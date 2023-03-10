@@ -7,10 +7,12 @@ import {parse, stringify} from 'flatted';
 function Layout() {
     const navigate = useNavigate();
     let [id, setId] = useState("");
+    const [tempState, setTempState] = useState();
 
     const createNewNote = () => {
         let tempId = uuid();
         setId(tempId);
+        id=tempId;
         let date = new Date().toISOString();
         const temp = [date, "Untitled", " ", "..."];
         localStorage.setItem(tempId, stringify(temp));
@@ -105,7 +107,7 @@ function Layout() {
                     <div id="sidebar-content">
                         <p id="sidebar-text">No Note Yet</p>
                         {
-                        notesList.map((_note) => {
+                        notesList.map((_note, index) => {
                             // set current note
                             let isCurrent = false;
                             if (_note[0] == id) {
@@ -113,14 +115,14 @@ function Layout() {
                             }
 
                             return(
-                                <SidebarNote _note={_note.slice(2, 5)} key={_note[0]} isCurrent={isCurrent} noteId={[_note[0], setId, switchNote]}></SidebarNote>
+                                <SidebarNote _note={_note.slice(2, 5)} key={_note[0]} isCurrent={isCurrent} noteThings={[_note[0], setId, switchNote]}></SidebarNote>
                             )
                         })}
                     </div>
                 </div>
                 <div id="body-content">
                         <p id="body-text">Select a note, or create a new one.</p>
-                    <Outlet context={[id, getNotes, setId, deleteId]}/>
+                    <Outlet context={[id, getNotes, setId, deleteId, setTempState]}/>
                 </div>
             </div>
         
