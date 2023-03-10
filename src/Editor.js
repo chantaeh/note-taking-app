@@ -60,11 +60,28 @@ function Editor() {
 
 
     const saveNote = () => {
-        const creationDate = parse(localStorage.getItem(tempId))[0];
+        let notesList = [];
+        Object.keys(localStorage).forEach(function(key, index) {
+            let temp = [key, ...parse(localStorage.getItem(key))];
+            notesList.push(temp);
+        });       
+        
+        // Sort entries by creation date, from newest to oldest
+        notesList.sort((a, b) => b[1].localeCompare(a[1]));
+        
+        const creationDate = (tempId=="" ? notesList[noteId-1][1] : parse(localStorage.getItem(tempId))[0]);
+        console.log(tempId, creationDate);
+        // const creationDate = parse(localStorage.getItem(tempId))[0];
+
         if (content === "") {
             content = "...";
         }
         const temp = [creationDate, name, date, content]
+
+        if (id == "") {
+            tempId = notesList[noteId-1][0];
+        }
+
         localStorage.setItem(tempId, stringify(temp));
         getNotes();
         navigate(`/notes/` + noteId);
