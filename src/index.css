@@ -31,6 +31,7 @@ p {
   margin: 0;
   padding: 0;
 }
+
 a {
   color: inherit;
   text-decoration: none;
@@ -72,6 +73,8 @@ header {
   display: flex;
   flex: 1;
   overflow-y:hidden;
+  overflow-x: hidden;
+  width: 100vw;
 }
 
 #sidebar {
@@ -220,6 +223,15 @@ h4 {
 
 .note-inside-header > .vertical {
   padding: 15px;
+}
+
+.vertical {
+  flex: 1;
+}
+
+.horizontal {
+  display: flex;
+  flex-direction: row;
 }
 
 .ql-hidden {
