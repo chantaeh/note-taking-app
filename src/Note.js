@@ -98,13 +98,3 @@ function Note() {
 }
 
 export default Note;
-
-// HIGHER PRIORITY
-// sidebar note is supposed to have some html styling D:
-
-
-// LOWER PRIORITY
-// fix title squished (fixed ish)
-
-// fix page being able to grow to the right with long note text
-
