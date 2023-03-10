@@ -107,7 +107,7 @@ function Layout() {
                     <div id="sidebar-content">
                         <p id="sidebar-text">No Note Yet</p>
                         {
-                        notesList.map((_note, index) => {
+                        notesList.map((_note) => {
                             // set current note
                             let isCurrent = false;
                             if (_note[0] == id) {
