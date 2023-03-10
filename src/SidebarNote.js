@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { parse } from "flatted";
+import ReactQuill from "react-quill";
 
 function SidebarNote({_note, isCurrent, noteThings}) {
     const { noteId } = useParams();
@@ -60,9 +61,10 @@ function SidebarNote({_note, isCurrent, noteThings}) {
 
     let content = _note[2];
     // Remove HTML and shorten
-    content = content.replace(/<\/{0,1}a>/g, ' ');
-    content = content.replace(/<[^>]*>?/gm, '');
-    content = content.replace(/&[a-z]{1,};/g, '');
+    // content = content.replace(/<\/{0,1}a>/g, ' ');
+    // content = content.replace(/<[^>]*>?/gm, '');
+    content = content.replace(/style="[ a-z0-9(),:;-]{1,}"/g, '');
+    content = content.replace(/&[a-z]{1,};/g, ' ');
 
     const showNote = async () => {
         await setId(id);
@@ -74,7 +76,7 @@ function SidebarNote({_note, isCurrent, noteThings}) {
         <div className={divClass} onClick={showNote}>
             <h4>{name}</h4>
             <p className="note-date">{date}</p>
-            <p className="sidebar-note-content">{content}</p>
+            <ReactQuill value={content} readOnly={true} theme={"bubble"} />
         </div>
     </>
     );
