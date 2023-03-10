@@ -102,10 +102,6 @@ export default Note;
 // HIGHER PRIORITY
 // sidebar note is supposed to have some html styling D:
 
-// when navigate to specific notes page via url, current note is not highlighted
-
-// can't navigate to edit page via url D:
-
 
 // LOWER PRIORITY
 // fix title squished (fixed ish)
