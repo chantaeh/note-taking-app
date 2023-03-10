@@ -1,9 +1,33 @@
-function SidebarNote({_note, isCurrent, noteId}) {
+import { useParams } from "react-router-dom";
+import { parse } from "flatted";
+
+function SidebarNote({_note, isCurrent, noteThings}) {
+    const { noteId } = useParams();
+
+    let notesList = [];
+
+    // Get objects from localStorage and put them into notesList.
+    Object.keys(localStorage).forEach(function(key, index) {
+        let temp = [key, ...parse(localStorage.getItem(key))];
+        notesList.push(temp);
+    });       
+    
+    // Sort entries by creation date, from newest to oldest
+    notesList.sort((a, b) => b[1].localeCompare(a[1]));
+
+    const [id, setId, switchNote] = noteThings;
+
+    // Add current-note class to the correct SidebarNote component
     let divClass = "div-sidebar-note";
     if (isCurrent) {
         divClass += " ";
         divClass += "current-note";
-    }    
+    } else if (noteId != undefined) {
+        if (notesList[noteId-1][0]==id) {
+            divClass += " ";
+        divClass += "current-note";
+        }
+    }
 
     let date = " ";
 
@@ -41,7 +65,6 @@ function SidebarNote({_note, isCurrent, noteId}) {
     content = content.replace(/&[a-z]{1,};/g, '');
 
     const showNote = async () => {
-        const [id, setId, switchNote] = noteId;
         await setId(id);
         switchNote(id);
     }
